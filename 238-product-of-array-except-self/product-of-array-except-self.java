@@ -7,7 +7,7 @@ class Solution {
     }
     int left = 1 ;
     for(int i= 0 ; i<nums.length;i++){
-        output[i]*=left;
+        output[i]=left*output[i];
         left*=nums[i];
 
     }
