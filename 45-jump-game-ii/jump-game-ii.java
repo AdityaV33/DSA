@@ -1,30 +1,19 @@
 class Solution {
     public int jump(int[] nums) {
-        int totalJumps = 0;
-
-    int destination = nums.length - 1;
-
-    int coverage = 0, lastJumpIdx = 0;
-
-  
-    if (nums.length == 1) return 0;
-
-    for (int i = 0; i < nums.length; i++) {
-
-      coverage = Math.max(coverage, i + nums[i]);
-
-      if (i == lastJumpIdx) {
-        lastJumpIdx = coverage;
-        totalJumps++;
-
+        int l=0;
+        int r=0;
+        int jumps = 0;
         
-        if (coverage >= destination) {
-          return totalJumps;
+        while(r<nums.length-1){
+            int farthest = 0;
+            for(int i = 0 ; i<=r;i++){
+                 farthest = Math.max(farthest,i+nums[i]);
+            }
+            l = r +1;
+            r= farthest;
+            jumps++;
         }
-      }
-    }
-
-    return totalJumps;
+        return jumps;
         
     }
 }
