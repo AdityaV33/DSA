@@ -15,13 +15,14 @@ class Solution {
 
             minEnding=Math.min(nums[i],minEnding+nums[i]);
             minsum = Math.min(minsum,minEnding);
-            //if every elem was neg minsum = maxsum = total and circular formula
-            // is total - minsum hence total - minsum =0 which is wrong 
-           
+            
 
             
 
         }
+        //if every elem was neg minsum = maxsum = total and circular formula
+            // is total - minsum hence total - minsum =0 which is wrong 
+           
          if(maxsum<0){
                 return maxsum;
             }
