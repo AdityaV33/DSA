@@ -1,15 +1,16 @@
 class Solution {
-    HashMap<Integer,Integer> dp = new HashMap<>();
-
     public int fib(int n) {
-        if(n==0||n==1) return n;
-        if(dp.containsKey(n)) return dp.get(n);
+        if(n==0) return 0;
+        if(n==1) return 1;
+        int prev = 1;
+        int prevprev = 0;
 
-        int a1 = fib(n-1);
-        int a2 = fib(n-2);
+        for(int i = 2 ;i<=n;i++){
+            int ans = prev + prevprev;
 
-        int ans = a1+a2;
-        dp.put(n,ans);
-        return ans;
+            prevprev = prev;
+            prev = ans ;
+        }
+        return prev;
     }
 }
