@@ -1,26 +1,33 @@
-public class Solution {
-    private List<String> result = new ArrayList<>();
+        class Solution {
+    public void fun(int open, int close, int n, StringBuilder temp, List<String> res) {
 
-    public List<String> generateParenthesis(int n) {
-        solve(n, "", 0, 0);
-        return result;
-    }
-
-    private void solve(int n, String curr, int open, int close) {
-        if (curr.length() == 2 * n) {
-            result.add(curr);
+        // Base Case
+        if (open == n && close == n) {
+            res.add(temp.toString());
             return;
         }
 
+        // First Choice: Add '('
         if (open < n) {
-            curr += '(';
-            solve(n, curr, open + 1, close);
-            curr = curr.substring(0, curr.length() - 1);
+            temp.append('(');
+            fun(open + 1, close, n, temp, res);
+            temp.deleteCharAt(temp.length() - 1);
         }
+
+        // Second Choice: Add ')'
         if (close < open) {
-            curr += ')';
-            solve(n, curr, open, close + 1);
-            curr = curr.substring(0, curr.length() - 1);
+            temp.append(')');
+            fun(open, close + 1, n, temp, res);
+            temp.deleteCharAt(temp.length() - 1);
         }
+    }
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        StringBuilder temp = new StringBuilder();
+
+        fun(0, 0, n, temp, res);
+
+        return res;
     }
 }
